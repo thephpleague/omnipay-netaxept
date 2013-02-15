@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Omnipay\Billing\Netaxept;
+namespace Omnipay\Netaxept;
 
 use Omnipay\GatewayTestCase;
 
@@ -35,7 +35,7 @@ class GatewayTest extends GatewayTestCase
 
         $response = $this->gateway->purchase($this->options);
 
-        $this->assertInstanceOf('\Omnipay\RedirectResponse', $response);
+        $this->assertInstanceOf('\Omnipay\Common\RedirectResponse', $response);
         $this->assertTrue($response->isRedirect());
         $this->assertEquals('https://epayment.bbs.no/Terminal/Default.aspx?merchantId=foo&transactionId=abc123', $response->getRedirectUrl());
     }
@@ -65,7 +65,7 @@ class GatewayTest extends GatewayTestCase
     }
 
     /**
-     * @expectedException \Omnipay\Exception\InvalidResponseException
+     * @expectedException \Omnipay\Common\Exception\InvalidResponseException
      */
     public function testCompletePurchaseInvalid()
     {

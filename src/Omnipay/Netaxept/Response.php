@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Omnipay\Billing\Netaxept;
+namespace Omnipay\Netaxept;
 
-use Omnipay\AbstractResponse;
+use Omnipay\Common\AbstractResponse;
 
 /**
  * Netaxept Response

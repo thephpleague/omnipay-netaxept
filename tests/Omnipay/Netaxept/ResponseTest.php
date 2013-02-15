@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Omnipay\Billing\Netaxept;
+namespace Omnipay\Netaxept;
 
 use SimpleXmlElement;
 use Omnipay\TestCase;
