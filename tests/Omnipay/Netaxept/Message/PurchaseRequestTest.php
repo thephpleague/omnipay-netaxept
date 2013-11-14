@@ -3,7 +3,7 @@
 namespace Omnipay\Netaxept\Message;
 
 use Omnipay\Common\CreditCard;
-use Omnipay\TestCase;
+use Omnipay\Tests\TestCase;
 
 class PurchaseRequestTest extends TestCase
 {

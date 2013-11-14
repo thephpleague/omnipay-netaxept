@@ -2,7 +2,7 @@
 
 namespace Omnipay\Netaxept;
 
-use Omnipay\GatewayTestCase;
+use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
 {
