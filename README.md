@@ -6,7 +6,7 @@
 [![Latest Stable Version](https://poser.pugx.org/omnipay/netaxept/version.png)](https://packagist.org/packages/omnipay/netaxept)
 [![Total Downloads](https://poser.pugx.org/omnipay/netaxept/d/total.png)](https://packagist.org/packages/omnipay/netaxept)
 
-[Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gatnetaxept payment
+[Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+. This package implements Netaxept support for Omnipay.
 
 ## Installation
