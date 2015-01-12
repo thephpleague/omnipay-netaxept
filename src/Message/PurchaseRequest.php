@@ -9,8 +9,8 @@ use Omnipay\Common\Message\AbstractRequest;
  */
 class PurchaseRequest extends AbstractRequest
 {
-    protected $liveEndpoint = 'https://epayment.bbs.no';
-    protected $testEndpoint = 'https://epayment-test.bbs.no';
+    protected $liveEndpoint = 'https://epayment.nets.eu';
+    protected $testEndpoint = 'https://test.epayment.nets.eu';
 
     public function getMerchantId()
     {

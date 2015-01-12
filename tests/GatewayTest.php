@@ -32,7 +32,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertTrue($response->isRedirect());
         $this->assertEquals('f3d94dd5c0f743a788fc943402757c58', $response->getTransactionReference());
         $this->assertSame('GET', $response->getRedirectMethod());
-        $this->assertSame('https://epayment.bbs.no/Terminal/Default.aspx?merchantId=foo&transactionId=f3d94dd5c0f743a788fc943402757c58', $response->getRedirectUrl());
+        $this->assertSame('https://epayment.nets.eu/Terminal/Default.aspx?merchantId=foo&transactionId=f3d94dd5c0f743a788fc943402757c58', $response->getRedirectUrl());
     }
 
     public function testPurchaseFailure()
