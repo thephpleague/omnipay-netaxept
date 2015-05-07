@@ -27,7 +27,7 @@ class CaptureRequestTest extends TestCase
     /**
      * @expectedException \Omnipay\Common\Exception\InvalidResponseException
      */
-    public function testGetDataThrowsExceptionWithoutResponseCode()
+    public function testGetDataThrowsExceptionWithoutTransactionAmount()
     {
         $this->httpRequest->query->set('transactionId', 'TRANS-123');
 
@@ -39,7 +39,7 @@ class CaptureRequestTest extends TestCase
      */
     public function testGetDataThrowsExceptionWithoutTransactionId()
     {
-        $this->httpRequest->query->set('responseCode', 'ABC-123');
+        $this->httpRequest->query->set('transactionAmount', 'ABC-123');
 
         $this->request->getData();
     }
