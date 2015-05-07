@@ -1,0 +1,21 @@
+HTTP/1.1 200 OK
+Cache-Control: private
+Content-Type: text/xml
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Date: Fri, 22 Feb 2013 16:53:34 GMT
+Content-Length: 474
+
+<?xml version="1.0"?>
+<result xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <sessionnumber>389</sessionnumber>
+  <issuerid>3</issuerid>
+  <responsecode>OK</responsecode>
+  <transactionid>cc497f37603678c61a09fd5645959812</transactionid>
+  <executiontime>2015-05-07T17:58:14.7503418+02:00</executiontime>
+  <merchantid>562923</merchantid>
+  <maskedpan>
+      <messageid>8544ffd97a104632854808128ef7308b</messageid>
+  </maskedpan>
+</result>

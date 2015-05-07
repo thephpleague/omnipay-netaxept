@@ -101,4 +101,42 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getTransactionReference());
         $this->assertSame('Unable to find transaction', $response->getMessage());
     }
+
+    public function testCaptureSuccess()
+    {
+        $this->getHttpRequest()->query->replace(
+            array(
+                'responseCode' => 'OK',
+                'transactionId' => 'abc123',
+            )
+        );
+
+        $this->setMockHttpResponse('CaptureSuccess.txt');
+
+        $response = $this->gateway->capture($this->options)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertEquals('cc497f37603678c61a09fd5645959812', $response->getTransactionReference());
+        $this->assertSame('OK', $response->getMessage());
+    }
+
+    public function testCaptureFailure()
+    {
+        $this->getHttpRequest()->query->replace(
+            array(
+                'responseCode' => 'OK',
+                'transactionId' => 'abc123',
+            )
+        );
+
+        $this->setMockHttpResponse('CaptureFailure.txt');
+
+        $response = $this->gateway->capture($this->options)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame('Unable to find transaction', $response->getMessage());
+    }
 }

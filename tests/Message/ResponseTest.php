@@ -51,4 +51,26 @@ class ResponseTest extends TestCase
         $this->assertNull($response->getTransactionReference());
         $this->assertSame('Unable to find transaction', $response->getMessage());
     }
+
+    public function testCaptureSuccess()
+    {
+        $httpResponse = $this->getMockHttpResponse('CaptureSuccess.txt');
+        $response = new Response($this->getMockRequest(), $httpResponse->xml());
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertEquals('cc497f37603678c61a09fd5645959812', $response->getTransactionReference());
+        $this->assertSame('OK', $response->getMessage());
+    }
+
+    public function testCaptureFailure()
+    {
+        $httpResponse = $this->getMockHttpResponse('CaptureFailure.txt');
+        $response = new Response($this->getMockRequest(), $httpResponse->xml());
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame('Unable to find transaction', $response->getMessage());
+    }
 }
