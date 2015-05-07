@@ -9,5 +9,7 @@ Content-Length: 245
 
 <?xml version="1.0"?>
 <GenericError xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Message>Unable to find transaction</Message>
+  <Error xsi:type="GenericError">
+      <Message>Unable to find transaction</Message>
+  </Error>
 </GenericError>

@@ -2,6 +2,8 @@
 
 namespace Omnipay\Netaxept\Message;
 
+use Omnipay\Common\Exception\InvalidResponseException;
+
 /**
  * Netaxept Capture Request
  *
@@ -17,6 +19,10 @@ class CaptureRequest extends PurchaseRequest
         $data['merchantId'] = $this->getMerchantId();
         $data['token'] = $this->getPassword();
         $data['operation'] = 'CAPTURE';
+
+        if (empty($data['transactionAmount']) || empty($data['transactionId'])) {
+            throw new InvalidResponseException;
+        }
 
         return $data;
     }
