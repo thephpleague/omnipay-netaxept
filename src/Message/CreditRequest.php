@@ -19,7 +19,7 @@ class CreditRequest extends PurchaseRequest
         $data['transactionId'] = $this->getTransactionId();
         $data['merchantId'] = $this->getMerchantId();
         $data['token'] = $this->getPassword();
-        $data['operation'] = 'ANNUL';
+        $data['operation'] = 'CREDIT';
 
         if (empty($data['transactionAmount']) || empty($data['transactionId'])) {
             throw new InvalidResponseException;
