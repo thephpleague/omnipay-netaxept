@@ -7,7 +7,7 @@ use Omnipay\Tests\TestCase;
 /**
  * @author Antonio Peric-Mazar <antonio@locastic.com>
  */
-class CaptureRequestTest extends TestCase
+class AnnulRequestTest extends TestCase
 {
     /**
      * @var \Symfony\Component\HttpFoundation\Request
@@ -15,7 +15,7 @@ class CaptureRequestTest extends TestCase
     private $httpRequest;
 
     /**
-     * @var \Omnipay\Netaxept\Message\CaptureRequest
+     * @var \Omnipay\Netaxept\Message\AnnulRequest
      */
     private $request;
 
@@ -24,7 +24,7 @@ class CaptureRequestTest extends TestCase
         $client = $this->getHttpClient();
         $this->httpRequest = $this->getHttpRequest();
 
-        $this->request = new CaptureRequest($client, $this->httpRequest);
+        $this->request = new AnnulRequest($client, $this->httpRequest);
     }
 
     /**

@@ -107,13 +107,6 @@ class GatewayTest extends GatewayTestCase
 
     public function testCaptureSuccess()
     {
-        $this->getHttpRequest()->query->replace(
-            array(
-                'responseCode' => 'OK',
-                'transactionId' => 'abc123',
-            )
-        );
-
         $this->setMockHttpResponse('CaptureSuccess.txt');
 
         $response = $this->gateway->capture($this->options)->send();
@@ -126,14 +119,31 @@ class GatewayTest extends GatewayTestCase
 
     public function testCaptureFailure()
     {
-        $this->getHttpRequest()->query->replace(
-            array(
-                'responseCode' => 'OK',
-                'transactionId' => 'abc123',
-            )
-        );
-
         $this->setMockHttpResponse('CaptureFailure.txt');
+
+        $response = $this->gateway->capture($this->options)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame('Unable to find transaction', $response->getMessage());
+    }
+
+    public function testAnnulSuccess()
+    {
+        $this->setMockHttpResponse('AnnulSuccess.txt');
+
+        $response = $this->gateway->capture($this->options)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertEquals('3fece3574598c6ae3932fae5f38bc8af', $response->getTransactionReference());
+        $this->assertSame('OK', $response->getMessage());
+    }
+
+    public function testAnnulFailure()
+    {
+        $this->setMockHttpResponse('AnnulFailure.txt');
 
         $response = $this->gateway->capture($this->options)->send();
 
