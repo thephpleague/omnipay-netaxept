@@ -44,6 +44,7 @@ class PurchaseRequest extends AbstractRequest
         $data['currencyCode'] = $this->getCurrency();
         $data['amount'] = $this->getAmountInteger();
         $data['redirectUrl'] = $this->getReturnUrl();
+        $data['autoSale'] = 'true';
 
         if ($this->getCard()) {
             $data['customerFirstName'] = $this->getCard()->getFirstName();
