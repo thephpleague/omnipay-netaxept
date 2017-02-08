@@ -28,6 +28,7 @@ class PurchaseRequestTest extends TestCase
         $this->request->setCurrency('USD');
         $this->request->setTransactionId('ABC-123');
         $this->request->setReturnUrl('http://return.domain.com/');
+        $this->request->setLanguage('en_GB');
 
         $card = new CreditCard(array(
             'firstName' => 'John',
@@ -50,6 +51,7 @@ class PurchaseRequestTest extends TestCase
             'currencyCode' => 'USD',
             'amount' => 123,
             'redirectUrl' => 'http://return.domain.com/',
+            'language' => 'en_GB',
             'customerFirstName' => 'John',
             'customerLastName' => 'Doe',
             'customerEmail' => 'test@email.com',
