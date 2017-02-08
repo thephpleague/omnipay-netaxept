@@ -32,6 +32,16 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('password', $value);
     }
 
+    public function getLanguage()
+    {
+        return $this->getParameter('language');
+    }
+
+    public function setLanguage($value)
+    {
+        return $this->setParameter('language', $value);
+    }
+
     public function getData()
     {
         $this->validate('amount', 'currency', 'transactionId', 'returnUrl');
@@ -44,6 +54,7 @@ class PurchaseRequest extends AbstractRequest
         $data['currencyCode'] = $this->getCurrency();
         $data['amount'] = $this->getAmountInteger();
         $data['redirectUrl'] = $this->getReturnUrl();
+        $data['language'] = $this->getLanguage();
 
         if ($this->getCard()) {
             $data['customerFirstName'] = $this->getCard()->getFirstName();
