@@ -16,7 +16,7 @@ class CompletePurchaseRequest extends PurchaseRequest
         $data['transactionId'] = $this->httpRequest->query->get('transactionId');
         $data['merchantId'] = $this->getMerchantId();
         $data['token'] = $this->getPassword();
-        $data['operation'] = 'AUTH';
+        $data['operation'] = 'SALE';
 
         if (empty($data['responseCode']) || empty($data['transactionId'])) {
             throw new InvalidResponseException;
