@@ -74,9 +74,9 @@ class PurchaseRequest extends AbstractRequest
     public function sendData($data)
     {
         $url = $this->getEndpoint().'/Netaxept/Register.aspx?';
-        $httpResponse = $this->httpClient->get($url.http_build_query($data))->send();
+        $httpResponse = $this->httpClient->request('GET', $url.http_build_query($data));
 
-        return $this->response = new Response($this, $httpResponse->xml());
+        return $this->response = new Response($this, simplexml_load_string($httpResponse->getBody()->getContents()));
     }
 
     public function getEndpoint()

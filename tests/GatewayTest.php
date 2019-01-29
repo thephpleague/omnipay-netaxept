@@ -100,8 +100,6 @@ class GatewayTest extends GatewayTestCase
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getTransactionReference());
 
-        var_dump($response->getMessage());
-
         $this->assertSame('Unable to find transaction', $response->getMessage());
     }
 
