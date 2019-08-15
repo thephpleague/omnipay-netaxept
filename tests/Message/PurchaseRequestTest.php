@@ -65,4 +65,31 @@ class PurchaseRequestTest extends TestCase
 
         $this->assertEquals($expected, $this->request->getData());
     }
+
+    public function testGetDataWithTransactionReconRef()
+    {
+        $this->request->setMerchantId('MERCH-123');
+        $this->request->setPassword('PASSWORD-123');
+        $this->request->setAmount('1.23');
+        $this->request->setCurrency('USD');
+        $this->request->setTransactionId('ABC-123');
+        $this->request->setReturnUrl('http://return.domain.com/');
+        $this->request->setLanguage('en_GB');
+
+        $this->request->setTransactionReconRef('DEF-123');
+
+        $expected = array(
+            'merchantId' => 'MERCH-123',
+            'token' => 'PASSWORD-123',
+            'serviceType' => 'B',
+            'orderNumber' => 'ABC-123',
+            'currencyCode' => 'USD',
+            'amount' => 123,
+            'redirectUrl' => 'http://return.domain.com/',
+            'language' => 'en_GB',
+            'transactionReconRef' => 'DEF-123',
+        );
+
+        $this->assertEquals($expected, $this->request->getData());
+    }
 }
