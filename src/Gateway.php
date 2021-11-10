@@ -3,6 +3,8 @@
 namespace Omnipay\Netaxept;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Netaxept\Message\AuthorizeRequest;
+use Omnipay\Netaxept\Message\CompleteAuthorizeRequest;
 use Omnipay\Netaxept\Message\PurchaseRequest;
 use Omnipay\Netaxept\Message\CompletePurchaseRequest;
 
@@ -45,6 +47,16 @@ class Gateway extends AbstractGateway
     public function setPassword($value)
     {
         return $this->setParameter('password', $value);
+    }
+
+    public function authorize($parameters = array())
+    {
+        return $this->createRequest(AuthorizeRequest::class, $parameters);
+    }
+
+    public function completeAuthorize($parameters = array())
+    {
+        return $this->createRequest(CompleteAuthorizeRequest::class, $parameters);
     }
 
     public function purchase(array $parameters = array())

@@ -103,6 +103,87 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Unable to find transaction', $response->getMessage());
     }
 
+    public function testAuthorizeSuccess()
+    {
+        $this->setMockHttpResponse('AuthorizeSuccess.txt');
+
+        $response = $this->gateway->authorize($this->options)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertTrue($response->isRedirect());
+        $this->assertEquals('f3d94dd5c0f743a788fc943402757c58', $response->getTransactionReference());
+        $this->assertSame('GET', $response->getRedirectMethod());
+        $this->assertSame('https://epayment.nets.eu/Terminal/Default.aspx?merchantId=foo&transactionId=f3d94dd5c0f743a788fc943402757c58', $response->getRedirectUrl());
+    }
+
+    public function testAuthorizeFailure()
+    {
+        $this->setMockHttpResponse('AuthorizeFailure.txt');
+
+        $response = $this->gateway->authorize($this->options)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame("Missing parameter: 'Order Number'", $response->getMessage());
+    }
+
+    public function testCompleteAuthorizeSuccess()
+    {
+        $this->getHttpRequest()->query->replace(
+            array(
+                'responseCode' => 'OK',
+                'transactionId' => 'abc123',
+            )
+        );
+
+        $this->setMockHttpResponse('CompleteAuthorizeSuccess.txt');
+
+        $response = $this->gateway->completeAuthorize($this->options)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertEquals('8a88d40cab5b47fab25e24d6228180a7', $response->getTransactionReference());
+        $this->assertSame('OK', $response->getMessage());
+    }
+
+    public function testCompleteAuthorizeCancel()
+    {
+        $this->getHttpRequest()->query->replace(
+            array(
+                'transactionId' => '1de59458487344759832716abf48109b',
+                'responseCode' => 'Cancel',
+            )
+        );
+
+        $response = $this->gateway->completeAuthorize($this->options)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertEquals('1de59458487344759832716abf48109b', $response->getTransactionReference());
+        $this->assertEquals('Cancel', $response->getMessage());
+    }
+
+    public function testCompleteAuthorizeFailure()
+    {
+        $this->getHttpRequest()->query->replace(
+            array(
+                'responseCode' => 'OK',
+                'transactionId' => 'abc123',
+            )
+        );
+
+        $this->setMockHttpResponse('CompleteAuthorizeFailure.txt');
+
+        $response = $this->gateway->completeAuthorize($this->options)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getTransactionReference());
+
+        $this->assertSame('Unable to find transaction', $response->getMessage());
+    }
+
     public function testCaptureSuccess()
     {
         $this->setMockHttpResponse('CaptureSuccess.txt');

@@ -50,7 +50,7 @@ class PurchaseRequest extends AbstractRequest
         $data['merchantId'] = $this->getMerchantId();
         $data['token'] = $this->getPassword();
         $data['serviceType'] = 'B';
-        $data['orderNumber'] = $this->getTransactionId();
+        $data['transactionReconRef'] = $this->getTransactionId();
         $data['currencyCode'] = $this->getCurrency();
         $data['amount'] = $this->getAmountInteger();
         $data['redirectUrl'] = $this->getReturnUrl();

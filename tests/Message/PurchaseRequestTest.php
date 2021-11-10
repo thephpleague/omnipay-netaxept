@@ -47,7 +47,7 @@ class PurchaseRequestTest extends TestCase
             'merchantId' => 'MERCH-123',
             'token' => 'PASSWORD-123',
             'serviceType' => 'B',
-            'orderNumber' => 'ABC-123',
+            'transactionReconRef' => 'ABC-123',
             'currencyCode' => 'USD',
             'amount' => 123,
             'redirectUrl' => 'http://return.domain.com/',
