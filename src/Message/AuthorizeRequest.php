@@ -51,6 +51,7 @@ class AuthorizeRequest extends AbstractRequest
         $data['token'] = $this->getPassword();
         $data['serviceType'] = 'B';
         $data['orderNumber'] = $this->getTransactionId();
+        $data['transactionId'] = $this->getTransactionReference();
         $data['currencyCode'] = $this->getCurrency();
         $data['amount'] = $this->getAmountInteger();
         $data['redirectUrl'] = $this->getReturnUrl();

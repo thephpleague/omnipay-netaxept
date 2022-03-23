@@ -15,13 +15,13 @@ class CaptureRequest extends PurchaseRequest
     {
         $data = array();
         $data['transactionAmount'] = $this->getAmountInteger();
-        $data['transactionId'] = $this->getTransactionId();
+        $data['transactionId'] = $this->getTransactionReference();
         $data['merchantId'] = $this->getMerchantId();
         $data['token'] = $this->getPassword();
         $data['operation'] = 'CAPTURE';
 
         if (empty($data['transactionAmount']) || empty($data['transactionId'])) {
-            throw new InvalidResponseException;
+            throw new InvalidResponseException();
         }
 
         return $data;
