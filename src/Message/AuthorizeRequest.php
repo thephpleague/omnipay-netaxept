@@ -5,9 +5,9 @@ namespace Omnipay\Netaxept\Message;
 use Omnipay\Common\Message\AbstractRequest;
 
 /**
- * Netaxept Purchase Request
+ * Netaxept Authorize Request
  */
-class PurchaseRequest extends AbstractRequest
+class AuthorizeRequest extends AbstractRequest
 {
     protected $liveEndpoint = 'https://epayment.nets.eu';
     protected $testEndpoint = 'https://test.epayment.nets.eu';

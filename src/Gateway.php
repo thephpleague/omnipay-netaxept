@@ -3,8 +3,12 @@
 namespace Omnipay\Netaxept;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Netaxept\Message\AnnulRequest;
+use Omnipay\Netaxept\Message\AuthorizeRequest;
+use Omnipay\Netaxept\Message\CompleteAuthorizeRequest;
 use Omnipay\Netaxept\Message\PurchaseRequest;
 use Omnipay\Netaxept\Message\CompletePurchaseRequest;
+use Omnipay\Netaxept\Message\CreditRequest;
 
 /**
  * Netaxept Gateway
@@ -47,28 +51,38 @@ class Gateway extends AbstractGateway
         return $this->setParameter('password', $value);
     }
 
+    public function authorize($parameters = array())
+    {
+        return $this->createRequest(AuthorizeRequest::class, $parameters);
+    }
+
+    public function completeAuthorize($parameters = array())
+    {
+        return $this->createRequest(CompleteAuthorizeRequest::class, $parameters);
+    }
+
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Netaxept\Message\PurchaseRequest', $parameters);
+        return $this->createRequest(PurchaseRequest::class, $parameters);
     }
 
     public function completePurchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Netaxept\Message\CompletePurchaseRequest', $parameters);
+        return $this->createRequest(CompletePurchaseRequest::class, $parameters);
     }
 
     public function capture(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Netaxept\Message\CaptureRequest', $parameters);
+        return $this->createRequest(CaptureRequest::class, $parameters);
     }
 
     public function void(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Netaxept\Message\AnnulRequest', $parameters);
+        return $this->createRequest(AnnulRequest::class, $parameters);
     }
 
     public function credit(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Netaxept\Message\CreditRequest', $parameters);
+        return $this->createRequest(CreditRequest::class, $parameters);
     }
 }
